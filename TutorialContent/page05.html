@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>GameMaker Tutorial</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">BreakThrough</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				<option value="page05.html"><b>Sound Effects</b></option>
+				<option value="page06.html">Ball Object</option>
+				<option value="page07.html">Collisions</option>
+				<option value="page08.html">Rooms</option>
+				<option value="page09.html">Gameplay 1</option>
+				<option value="page10.html">Gameplay 2</option>
+				<option value="page11.html">Power Ups</option>
+				<option value="page12.html">Summary</option>
+				<optgroup label="----------------------------">
+					<option value="page01.html">Introduction</option>
+					<option value="page02.html">Sprites</option>
+					<option value="page03.html">Brick Object</option>
+					<option value="page04.html">Bat Object</option>
+			  </optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+		Before we continue on to fill in the details of our Ball object, let's take a moment to add some sound effects to our game.
+	
+	<p>
+		We're going to add three sounds: a bounce sound, a break sound and a button sound. To start with, go to the resource tree and right click <img style="vertical-align:middle" src="Icon_RMB.png"> the "Sounds" resource and select <i>Create</i>. This will open the <b>Sound Editor</b>:
+		
+			<img class="center" src="04_02_CreateSound.png" alt="The Sound Editor">
+		
+	<p>
+		Name the sound "<b>snd_Bounce</b>" and then click file explorer button <img style="vertical-align:middle" src="Icon_Browse.png"> and browse to an appropriate sound (it should be <tt>*.wav</tt> or <tt>*.ogg</tt> format, and you can find example sounds in the "Tutorial Resources" folder that has been created as <a href="gms2tutorials:///ShowFiles?path=../TutorialResources">part of the tutorial in the project directory</a>) then add it. We don't need to change any other settings here, so close this window.
+		
+	<p>
+		Now create two more sound resources and name them "<b>snd_Break</b>" and "<b>snd_Click</b>" and add appropriate sound files to them.
+		
+	<p>
+		With that done, we can move on to creating the ball object.
+
+<p>
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left"> <!-- Set the previous  page to go to here -->
+				<a href="page04.html"  class="prev">
+					<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right"> <!-- Button commented out as we are on the last page and can't go forward -->
+				<a href="page06.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+</div>
+
+</body>
+</html>

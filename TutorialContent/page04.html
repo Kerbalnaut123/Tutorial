@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>GameMaker Tutorial</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">BreakThrough</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				<option value="page04.html"><b>Bat Object</b></option>
+				<option value="page05.html">Sound Effects</option>
+				<option value="page06.html">Ball Object</option>
+				<option value="page07.html">Collisions</option>
+				<option value="page08.html">Rooms</option>
+				<option value="page09.html">Gameplay 1</option>
+				<option value="page10.html">Gameplay 2</option>
+				<option value="page11.html">Power Ups</option>
+				<option value="page12.html">Summary</option>
+				<optgroup label="----------------------------">
+					<option value="page01.html">Introduction</option>
+					<option value="page02.html">Sprites</option>
+					<option value="page03.html">Brick Object</option>
+			  </optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+		Now we'll create an object for the player to control, and in this case it's going to be a "bat" that will be used to bounce the ball back up the screen. For this, you need to:
+		
+	<ul>
+		<li>Create a new object (use the right mouse button <img style="vertical-align:middle" src="Icon_RMB.png"> on the Objects resource and select "Create Object")</li><br>
+		<li>Name the object "obj_Bat"</li><br>
+		<li>Assign the object the sprite "spr_Bat" (click the button with "No Sprite" and select "spr_Bat" from the asset manager)</li>
+	</ul>
+	
+		<img class="center" src="04_01_Create_Bat.png" alt="The Bat Object">
+		
+	<p>
+		We'll also take a moment to create the Ball object. We won't be doing anything with it yet, but we need it to exist because we'll be applying actions to it later in the Bat object:
+		
+	<ul>
+		<li>Create a new object (use the right mouse button <img style="vertical-align:middle" src="Icon_RMB.png"> on the Objects resource and select "Create Object")</li><br>
+		<li>Name the object "obj_Ball"</li><br>
+		<li>Assign the object the sprite "spr_Ball" (click the button with "No Sprite" and select "spr_Ball" from the asset manager)</li>
+	</ul>
+	
+			<img class="center" src="05_01_Create_Ball.png" alt="The Ball Object">
+
+	<p>
+		Go back to the Bat object now, and add a <b>Create Event</b> (click the <i>Add Event</i> button and select <b>Create</b>). In this Create event we'll add the following action to create a new instance variable, <tt>spd</tt> (from the "Common" category in the toolbox):
+		
+			<img class="center" src="04_01_DND_SpdVar.png" alt="Set A Variable For Speed">
+
+	<p>
+		This variable will be used to control the speed of movement for the bat. We also need to store the <b>x offset value</b> for the bat sprite, as we'll be using that to ensure that the bat doesn't go out of the screen when it moves left or right (the x offset value is the x position of the sprite origin). There isn't a dedicated DnD&trade; action for this, so we'll use the <tt>Function Call</tt> action (from the "Common" category) to call some GML, like this:
+		
+			<img class="center" src="04_02_DND_Xoffset.png" alt="Get The X Offset Value">
+
+	<p>
+		This GML function will get the X offset value and then the action will store it in the variable <tt>xoffset</tt> for later use.
+		
+	<p>
+		This object will also need <b>Keyboard Events</b> to check for keyboard input. Note that there are actually three types of Keyboard event: the <b>Down</b> event - which is triggered continuously while a key is being held down, the <b>Pressed</b> event - which is triggered once when a key is initially pressed down, and the <b>Up</b> event - which is triggered once when the key has been released. Go ahead and add a <b>Keyboard Down Event</b> for the <b>Left</b> arrow key now:
+		
+			<img class="center" src="04_03_KeyDownLeft.png" alt="The Key Down Left Arrow Event">
+	
+	<p>
+		In this event we want to add the following actions:
+		
+			<img class="center" src="04_03_DND_MoveLeft.png" alt="Move Left">
+
+	<p>
+		Here we use the <tt>If Variable</tt> action along with the <tt>Else</tt> action (both from the "Common" category) to check "<i>if the <tt>x</tt> position is greater than the <tt>spd</tt> plus the <tt>xoffset</tt>, add the <tt>spd</tt> value on to <tt>x</tt>, else set the <tt>x</tt> position to the <tt>xoffset</tt> value</i>". This check simply ensures that the bat will only move left as long as the sprite is within the room bounds.
+		
+	<p>
+		We need to do the same for moving right now, so add a <b>Keyboard Down Right</b> event to the object and give it the following actions:
+		
+			<img class="center" src="04_03_DND_MoveRight.png" alt="Move Right">
+		
+	<p>
+		This does the same as the Left Down event, only now we are checking to see if the bat, when moving to the right, will go outside the width of the room (<tt>room_width</tt> is one of many built-in variables available to <a href="gms2tutorials:///ShowHelp?tag=room_general">get room information</a>).
+	
+	<p>
+		We need to add one final event into this object, and that's a <b>Step Event</b>. The step event is called every "step", or frame, of the game, so any actions added here will be run continuously. We need to use this event to ensure the ball object "sticks" to the bat when moving left and right until the player decides to start the game.
+		
+	<p>
+		Add the <b>Step Event</b> now (not the Begin or End events, but the general Step event) and give it the following actions:
+		
+			<img class="center" src="04_04_DND_MoveBall.png" alt="Move The Ball With The Bat">
+
+	<p>
+		Here we create a temporary local variable to hold the unique ID value of the Bat instance, then we use the <tt>Apply to...</tt> action to tell <i>GameMaker Studio 2</i> that the next actions are to be applied to the Ball object. The next actions have the ball object chack a variable and if it is <tt>false</tt> move the ball to the same x position as the bat.
+				
+<p>
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left"> <!-- Set the previous  page to go to here -->
+				<a href="page03.html"  class="prev">
+					<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right"> <!-- Button commented out as we are on the last page and can't go forward -->
+				<a href="page05.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+</div>
+
+</body>
+</html>

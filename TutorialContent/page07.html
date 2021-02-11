@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>GameMaker Tutorial</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">BreakThrough</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				<option value="page07.html"><b>Collisions</b></option>
+				<option value="page08.html">Rooms</option>
+				<option value="page09.html">Gameplay 1</option>
+				<option value="page10.html">Gameplay 2</option>
+				<option value="page11.html">Power Ups</option>
+				<option value="page12.html">Summary</option>
+				<optgroup label="----------------------------">
+					<option value="page01.html">Introduction</option>
+					<option value="page02.html">Sprites</option>
+					<option value="page03.html">Brick Object</option>
+					<option value="page04.html">Bat Object</option>
+					<option value="page05.html">Sound Effects</option>
+					<option value="page06.html">Ball Object</option>
+			  </optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+		The next piece of DnD&trade; code required for the ball will go in a <b>Collision Event</b>. A collision event is triggered when the object with the event comes into collision with the instance of another object which you specify. In this case, we are going to add a collision for the ball with the brick object, so click the <i>Add Event</i> button now and add a <b>Collision</b> event with the object "obj_Brick":
+		
+			<img class="center" src="05_03_BrickCollision.png" alt="Ball And Brick Collision Event">
+	
+	<p>
+		And in the DnD&trade; editor we will add some GML code. This is because we are going to use the <a href="gms2tutorials:///ShowHelp?tag=lengthdir_x"><tt>lengthdir_x()</tt></a> and <a href="gms2tutorials:///ShowHelp?tag=lengthdir_y"><tt>lengthdir_y()</tt></a> functions along with <a href="gms2tutorials:///ShowHelp?tag=move_bounce"><tt>move_bounce()</tt></a> to ensure a proper "bounce" from the brick. So add the <a href="gms2tutorials:///ShowHelp?tag=action_execute_code">Execute Code</a> action with the following:
+		
+			<img class="center" src="05_03_DND_ExecuteCode.png" alt="The Execute Code Action">
+	
+	<p>
+		The ball will be moving at a speed of more than 1 pixel every game frame, so when a collision is detected it will probably be when the ball and the brick sprites overlap. The code above simply moves the ball back along the direction it came from until the sprites no longer overlap, and then it calls the <tt>move_bounce()</tt> to tell <i>GameMaker Studio 2</i> to "bounce" the instance (<i>GameMaker Studio 2</i> will do all the maths for you and set the speed and the direction of the ball as appropriate).
+		
+	<p>
+		With that done we need to increase the speed of the ball speed - ensuring it doesn't go over a a maximum speed value - then play a sound and destroy the brick. We'll do that using the following DnD&trade;, which you should add after the <tt>Execute Code</tt> action:
+		
+			<img class="center" src="05_04_DND_BounceBall.png" alt="Bounce The Ball">
+	
+	<p>
+		Note that we change the <i>scope</i> of <a href="gms2tutorials:///ShowHelp?tag=action_destroy_instance">Destroy Instance</a> to target the "other" instance in the collision (the brick). If we don't do this, we'll destroy the ball instead.
+		
+		
+			<img class="center" src="05_05_DestroyOther.gif" alt="Destroy The Other instance In A Collision">
+
+	<p>
+		When a collision event is triggered it is because the sprite bounding-box of one object is overlapping the sprite bounding-box of another, which in this case means that the ball is overlapping the brick. We want to simulate a bounce off the edge of the brick, but if they are overlapping (even if it's only by a couple of pixels) then this bounce will be wrong, so what this code does is it first moves the ball back along the direction it came from until the bounding-boxes of each instance in the collision are no longer overlapping (they could be considered "touching") and then uses the a GML function to calculate the bounce direction, before destroying the brick itself and playing a sound.
+		
+	<p>
+		Our final piece of DnD&trade; will go in another <b>Collision</b> event, this time with the Bat object. So, add a Collision event with "obj_Bat" and give it the following actions:
+		
+			<img class="center" src="05_05_DND_BallBounce.png" alt="Bounce The Ball Off The Bat">
+
+	<p>
+		With these actions we are setting the direction of the ball based on how far from the center of the bat the ball hit, so in this way we are giving the player a bit of control over the direction of the bounce.
+		
+	<p>
+		It's time now to place all this into a room and test our game!
+
+<p>
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left"> <!-- Set the previous  page to go to here -->
+				<a href="page06.html"  class="prev">
+					<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right"> <!-- Button commented out as we are on the last page and can't go forward -->
+				<a href="page08.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+</div>
+
+</body>
+</html>

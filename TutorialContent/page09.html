@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>GameMaker Tutorial</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">BreakThrough</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				<option value="page09.html"><b>Gameplay 1</b></option>
+				<option value="page10.html"><b>Gameplay 2</b></option>
+				<option value="page11.html">Power Ups</option>
+				<option value="page12.html">Summary</option>
+				<optgroup label="----------------------------">
+					<option value="page01.html">Introduction</option>
+					<option value="page02.html">Sprites</option>
+					<option value="page03.html">Brick Object</option>
+					<option value="page04.html">Bat Object</option>
+					<option value="page05.html">Sound Effects</option>
+					<option value="page06.html">Ball Object</option>
+					<option value="page07.html">Collisions</option>
+					<option value="page08.html">Rooms</option>
+			  </optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+		The time has come to test our game! This is the easy part as all you're required to do is press the "play" button <img style="vertical-align:middle" src="Icon_Play.png"> at the top of the <i>GameMaker Studio 2</i> IDE. If all has gone correctly, your game will run and you can play it using the "Space" key and the Arrow keys:
+		
+			<img class="center" src="07_01_Gameplay.gif" alt="Finished Gameplay">
+
+	<p>
+		This is a great start, but it's missing a few things to make it a "complete" game - namely player lives and a score. We want the game to give you three "lives" and keep track of the score you get from each brick destroyed, so for that we are going to make a <i>controller</i> object (A controller object is simply an object in your game that is designed to control the things that go on in the background, and it usually doesn't have a sprite assigned to it although it can have, and it can also draw stuff independently as we'll see).
+		
+	<p>
+		Before adding the controller however, let's add a <b>Font</b> resource, as we'll want our controller to draw some text to the screen later. To add a font, simply right click <img style="vertical-align:middle" src="Icon_LMB.png"> on the <i>Fonts</i> resource and select <i>Create Font</i>. In the font window that opens, name the font "fnt_Game" and then select something that you think will look good, setting the size to 20 (or whatever seems appropriate for the font being used):
+		
+			<img class="center" src="07_02_AddFont.png" alt="Adding A Font Resource">	
+	
+	<p>
+		You can close the Font editor now.
+		
+	<p>
+		For our controller you will need to create a new object, call it "obj_Control", and then add a <b>Create</b> event with the following Action:
+		
+			<img class="center" src="07_01_DnD_StartWariable.png" alt="Create The State Variable">	
+		
+	<p>
+	  We'll be using this variable to set the "state" of the controller so that it knows whether the game has to start, is being played, or is finished. Apart from this, we'll also use the <b>Game Start</b> event to initialise some <i>global</i> variables:
+	  
+		<img class="center" src="07_03_GameStart.png" alt="The Game Start Event">	
+  
+	<p>
+		In this event add this Action:
+	
+		<img class="center" src="07_02_DND_SetGlobals.png" alt="Initialise Global Variables">	
+	
+	<p>
+		These global variables will permit us to keep track of important values without having to worry about which instance of an object is accessing them or changing them, and by initialising them in the Game Start event, they will only be initialised once even if we restart the room (but if we restart the <i>game</i> they will be reinitialised).
+		
+	<p>
+		We now need to draw the score and lives of the player to the screen so you'll need to add a <b>Draw</b> event to the object. Note that - like the Step event category - the Draw event has a number of different event types that can be used, but for this game simply use the regular <b>Draw</b> event (you can find out more about the different draw events <a href="gms2tutorials:///ShowHelp?tag=draw_event">from the manual</a>):
+		
+			<img class="center" src="07_04_AddDrawEvent.png" alt="Add A Draw Event">	
+	
+	<p>
+		In this event we'll need the following Actions:
+		
+		<img class="center" src="07_03_DND_DrawHUD.png" alt="Draw Global Game Variables To The Screen">
+	
+	<p>
+		Here we are drawing the score across the top of the room, and then a series of sprites (scaled down) to represent the player lives at the bottom. 
+		
+<p>
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left"> <!-- Set the previous  page to go to here -->
+				<a href="page08.html"  class="prev">
+					<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right"> <!-- Button commented out as we are on the last page and can't go forward -->
+				<a href="page10.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+</div>
+
+</body>
+</html>

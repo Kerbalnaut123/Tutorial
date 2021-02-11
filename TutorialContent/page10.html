@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>GameMaker Tutorial</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">BreakThrough</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				<option value="page10.html"><b>Gameplay 2</b></option>
+				<option value="page11.html">Power Ups</option>
+				<option value="page12.html">Summary</option>
+				<optgroup label="----------------------------">
+					<option value="page01.html">Introduction</option>
+					<option value="page02.html">Sprites</option>
+					<option value="page03.html">Brick Object</option>
+					<option value="page04.html">Bat Object</option>
+					<option value="page05.html">Sound Effects</option>
+					<option value="page06.html">Ball Object</option>
+					<option value="page07.html">Collisions</option>
+					<option value="page08.html">Rooms</option>
+					<option value="page09.html">Gameplay 1</option>
+			  </optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+		We need to add one final event to this controller object, a <b>Step</b> event. We'll be using this to restart the room when the player destroys all the bricks. Add this event now, and give it the following Actions:
+		
+			<img class="center" src="07_05_DND_GameOverCheck.png" alt="Check If THe Game Is Over">	
+	
+	<p>
+		Here we'll either be restarting the room when all the bricks are gone (and because we are using <i>global</i> variables, this will not reset the score or lives), or we'll wait for the player to restart the room if all the lives are gone, resetting the global variables.
+		
+	<p>
+		Now that we have that done, and before continuing on to do anything else, open the Room Editor and add this object into the game anywhere then close the room editor again...
+		
+	<p>
+		We'll test this in a moment, but first we need to add a few extra Actions to our object "obj_Ball", so open that now.
+		
+	<p>
+		We need to calculate the score and tell the controller object when the player has a lost a life, etc... so to start with we'll edit the <b>Collision</b> event with the <b>brick</b> object so that it adds to the global score variable. You want to add the following Action <i>after</i> all the others
+		
+			<img class="center" src="07_06_DND_AddToScore.png" alt="Add To The Player Score">	
+		
+	<p>
+		We also need to modify the <b>Intersect Boundary</b> event, in the section where we check if the ball goes out the bottom of the room, where the <tt>Destroy Instance</tt> action is. Here we need to expand it to do a bit more than just destroy and recreate the instance, so change it to look like this:
+
+			<img class="center" src="07_07_DND_SetState.png" alt="Ball Leaving Room State Check">	
+
+	<p>
+		Go ahead and play the game now! If all has gone well, you should see intro text on the screen, a score that changes as you play, lives as markers along the bottom and the game should change according to whether you have no lives left or you destroy all the bricks.
+		
+<p>
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left"> <!-- Set the previous  page to go to here -->
+				<a href="page09.html"  class="prev">
+					<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right"> <!-- Button commented out as we are on the last page and can't go forward -->
+				<a href="page11.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+</div>
+
+</body>
+</html>

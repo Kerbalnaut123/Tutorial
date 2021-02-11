@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>GameMaker Tutorial</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">BreakThrough</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				<option value="page06.html"><b>Ball Object</b></option>
+				<option value="page07.html"><b>Collisions</b></option>
+				<option value="page08.html">Rooms</option>
+				<option value="page09.html">Gameplay 1</option>
+				<option value="page10.html">Gameplay 2</option>
+				<option value="page11.html">Power Ups</option>
+				<option value="page12.html">Summary</option>
+				<optgroup label="----------------------------">
+					<option value="page01.html">Introduction</option>
+					<option value="page02.html">Sprites</option>
+					<option value="page03.html">Brick Object</option>
+					<option value="page04.html">Bat Object</option>
+					<option value="page05.html">Sound Effects</option>
+			  </optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+		We created the Ball object previously, but we haven't added any events to it. Let's remedy that now by adding a <b>Create</b> event, to which we'll add the following actions to set up some variables:
+		
+			<img class="center" src="05_01_DND_CreateActions.png" alt="The Ball Object Create Event Actions">
+	
+	<p>		
+		This object will also need a <b>Keyboard <i>Down</i> Event</b> targeting the <b>Space</b> key, so we'll add that now and give it the following actions:
+		
+			<img class="center" src="05_02_DND_KeyDownActions.png" alt="The Ball Object Space Key Down Actions">
+		
+	<p>
+		All we're doing here is in the event that checks to see if the "Space" key has been pressed down, we check to see if the <tt>go</tt> variable is set to <tt>false</tt>, and if it is then we play a sound and then set the ball in motion, setting <tt>go</tt> to <tt>true</tt> again so it only happens once.
+		
+	<p>
+		That'll set our ball in motion, but what about when it reaches the edges of the game area? If we don't stop it, then it'll fly out the game room, which isn't really much fun! To prevent this we'll detect when the ball is in a collision with the room boundary and react accordingly. Luckily for us, in the <b>Other</b> event category we have the <b>Intersect Boundary</b> event:
+		
+			<img class="center" src="05_02_BoundaryEvent.png" alt="The Intersect Boundary Event">
+		
+	<p>
+		First we need to define a number of local temporary variables to hold various different instance variable values. You could just use the instance variables directly, but we'll assign them to local vars instead as it's easier to remeber and keep track of:
+		
+			<img class="center" src="05_03_DND_InstanceVars.png" alt="Define Local Instance Variables">
+	
+	<p>
+		We then need to add the following to use these local variables to perform our boundary checks. First the left and right check:
+		
+			<img class="center" src="05_04_DND_CheckLeftRight.png" alt="Check For Left Or Right Room Boundaries">
+		
+	<p>
+		These actions check to see if the bat bounding box has left either side of the room, and if it has it reverses the horizontal speed (making the ball "bounce") and then sets the it to a position that keeps it perfectly within the room. We'll do something similar for the top and bottom of the room now:
+		
+			<img class="center" src="05_05_DND_CheckTopBottom.png" alt="Check For Top Or Bottom Room Boundaries">
+
+	<p>
+		These actions will check to see if the ball is about to exit from the top of the room and then reverse the vertical speed accordingly, <i>except</i> if it goes out the bottom. In that case, the ball instance will be destroyed and a new one created.
+		
+	<p>
+		The final section of DnD&trade; that we need to add will play the "bounce" sound  we added earlier, and then also add a small random amount between 2 and -2 to the direction of the ball. This is to prevent the ball possibly getting "stuck" bouncing at perfect 180&deg; angles between the wall and anything else. We will also increment the speed of the ball a little bit, which will increase the difficulty of the game as it progresses:
+		
+			<img class="center" src="05_06_DND_Bounce.png" alt="Play Bounce Sound And Set Speed And Direction">
+		
+	<p>
+		The whole event should now look something like this:
+		
+			<img class="center" src="05_07_DND_AllActions.png" alt="Full Action List For The Boundary Event">
+	
+	<p>
+		<div class="note">
+			<b>NOTE</b>: The above is split into two columns to make it easier to read, but actually forms a continuous chain of actions. Also note that if this image appears too small, then you can click the side of the dock and drag it towards the workspace to make the visible area larger.
+		</div>
+
+<p>
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left"> <!-- Set the previous  page to go to here -->
+				<a href="page05.html"  class="prev">
+					<div id="button-prev"></div>
+				</a>
+			</div>
+			<div style="float:right"> <!-- Button commented out as we are on the last page and can't go forward -->
+				<a href="page07.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright YoYo Games Ltd. 2019 All Rights Reserved</h5>
+</div>
+
+</body>
+</html>
