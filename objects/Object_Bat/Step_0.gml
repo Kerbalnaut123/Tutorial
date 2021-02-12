@@ -8,6 +8,8 @@ var _bat_x = x;
 /// @DnDAction : YoYo Games.Common.Apply_To
 /// @DnDVersion : 1
 /// @DnDHash : 4A95B8F6
+/// @DnDApplyTo : {Object_Ball}
+with(Object_Ball) {
 	/// @DnDAction : YoYo Games.Common.If_Variable
 	/// @DnDVersion : 1
 	/// @DnDHash : 60039D5D
@@ -24,3 +26,4 @@ var _bat_x = x;
 		/// @DnDArgument : "var" "x"
 		x = _bat_x;
 	}
+}

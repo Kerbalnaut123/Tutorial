@@ -25,6 +25,7 @@
     {"isDnD":true,"eventNum":32,"eventType":5,"collisionObjectId":null,"parent":{"name":"Object_Ball","path":"objects/Object_Ball/Object_Ball.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":true,"eventNum":1,"eventType":7,"collisionObjectId":null,"parent":{"name":"Object_Ball","path":"objects/Object_Ball/Object_Ball.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":true,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"Object_Brick","path":"objects/Object_Brick/Object_Brick.yy",},"parent":{"name":"Object_Ball","path":"objects/Object_Ball/Object_Ball.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":true,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"Object_Bat","path":"objects/Object_Bat/Object_Bat.yy",},"parent":{"name":"Object_Ball","path":"objects/Object_Ball/Object_Ball.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
