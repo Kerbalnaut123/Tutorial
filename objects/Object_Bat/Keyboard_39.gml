@@ -11,8 +11,9 @@ if(x < room_width - xoffset - spd)
 	/// @DnDHash : 6BBA32E0
 	/// @DnDParent : 2A0C18FC
 	/// @DnDArgument : "expr" "spd"
+	/// @DnDArgument : "expr_relative" "1"
 	/// @DnDArgument : "var" "x"
-	x = spd;
+	x += spd;
 }
 
 /// @DnDAction : YoYo Games.Common.Else
